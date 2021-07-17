@@ -1,12 +1,15 @@
 package com.petero.eatsimple.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,6 +22,7 @@ public class Meal implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ID")
 	private Long id;
 	@Column(name="MEAL_NAME")
@@ -30,29 +34,33 @@ public class Meal implements Serializable {
 	@Column(name="MEAL_CALORIES")
 	private Integer mealCalories;
 	
-	@OneToMany(mappedBy="meal", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Item> items;
+	@OneToMany(mappedBy="meal", fetch= FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<Item> items = new ArrayList<>();
 	
 	
 	public Meal() {
 		
 	}
 	
-	public Meal(Long id, List<Item> items, String name, Integer marketCost, Integer overallCost, Integer menuCalories) {
+	public Meal(Long id, String name, Integer marketCost, Integer overallCost, Integer menuCalories) {
 		this.id = id;
-		this.items = items;
 		this.name = name;
 		this.overallCost = overallCost;
 		this.marketCost = marketCost;
 		this.mealCalories = menuCalories;
+		
 	}
 
-	public List<Item> getItems() {
-		return items;
-	}
+	/*
+	 * public List<Item> getItems() { return items; }
+	 * 
+	 * public void setItems(List<Item> items) { this.items = items; }
+	 */
 
-	public void setItems(List<Item> items) {
-		this.items = items;
+	@Override
+	public String toString() {
+		return "Meal [id=" + id + ", name=" + name + ", marketCost=" + marketCost + ", overallCost=" + overallCost
+				+ ", mealCalories=" + mealCalories + ", items=" + items + "]";
 	}
 
 	public Long getId() {

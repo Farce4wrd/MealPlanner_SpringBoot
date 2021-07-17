@@ -28,7 +28,7 @@ public class MealPlannerApplication {
 		SpringApplication.run(MealPlannerApplication.class, args);
 	}
 	
-	@Bean
+	/*@Bean
 	public CommandLineRunner mappingDemo(MealRepository mealRepository, ItemRepository itemRepository, MealService mealService) {
 		
 		
@@ -45,9 +45,9 @@ public class MealPlannerApplication {
 			Meal myMeal = new Meal(20L, itemList, "Rice and Stew", 200, 250, 2000);
 			LOG.info("This is it");
 			mealRepository.save(myMeal);
-			System.out.println(mealService.getItemNames(myMeal));
+			//LOG.info(mealService.getItemNames(myMeal));
 		};
 	}
-	
+	*/
 	
 }
