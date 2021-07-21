@@ -31,7 +31,7 @@ public class Item implements Serializable {
 	private Integer calories;
 	
 	@ManyToOne
-	@JoinColumn(name ="MEAL_ID")
+	@JoinColumn(name ="ID")
 	private Meal meal;
 	
 	public Item() {
@@ -39,13 +39,22 @@ public class Item implements Serializable {
 	}
 	
 	@Autowired
-	public Item(Long id, String name, Integer cost, Integer calories) {
-		this.id = id;
+	public Item(String name, Integer cost, Integer calories, Meal meal) {
+	
 		this.name = name;
 		this.cost = cost;
 		this.calories = calories;
+		this.meal = meal;
 	}
-	public long getId() {
+	
+	public Meal getMeal() {
+		return this.meal;
+	}
+	public void setMeal(Meal meal) {
+		this.meal = meal;
+	}
+	
+	public Long getId() {
 		return id;
 	}
 	
@@ -68,5 +77,13 @@ public class Item implements Serializable {
 	public void setCalories(Integer calories) {
 		this.calories = calories;
 	}
+
+	@Override
+	public String toString() {
+		return "Item [id=" + id + ", name=" + name + ", cost=" + cost + ", calories=" + calories + ", meal=" + meal
+				+ "]";
+	}
+	
+	
 
 }
