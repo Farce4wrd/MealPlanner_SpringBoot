@@ -2,6 +2,7 @@ package com.petero.eatsimple.models;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,8 +31,8 @@ public class Item implements Serializable {
 	@Column(name="ITEM_CALORIES")
 	private Integer calories;
 	
-	@ManyToOne
-	@JoinColumn(name ="ID")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name ="meal_id")
 	private Meal meal;
 	
 	public Item() {
@@ -39,8 +40,8 @@ public class Item implements Serializable {
 	}
 	
 	@Autowired
-	public Item(String name, Integer cost, Integer calories, Meal meal) {
-	
+	public Item(Long id,String name, Integer cost, Integer calories, Meal meal) {
+		this.id= id;
 		this.name = name;
 		this.cost = cost;
 		this.calories = calories;

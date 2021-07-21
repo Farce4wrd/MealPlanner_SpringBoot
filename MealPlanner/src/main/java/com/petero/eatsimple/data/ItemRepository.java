@@ -10,6 +10,6 @@ import com.petero.eatsimple.models.Meal;
 
 @Repository
 public interface ItemRepository extends JpaRepository<Item, Long> {
-	List<Item> findByMeal(Meal meal);
+	
 
 }

@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="MEAL")
 public class Meal implements Serializable {
@@ -23,7 +25,7 @@ public class Meal implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
+	@Column(name="MEAL_ID")
 	private Long id;
 	@Column(name="MEAL_NAME")
 	private String name;
@@ -34,6 +36,7 @@ public class Meal implements Serializable {
 	@Column(name="MEAL_CALORIES")
 	private Integer mealCalories;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="meal", fetch= FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Item> items = new ArrayList<>();
 	

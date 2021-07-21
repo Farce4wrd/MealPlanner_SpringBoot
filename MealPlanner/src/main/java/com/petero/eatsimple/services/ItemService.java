@@ -11,16 +11,28 @@ import com.petero.eatsimple.models.Item;
 
 @Service
 public class ItemService {
+		
+	private final ItemRepository itemRepository;
 	
-	@Autowired	
-	private ItemRepository itemRepository;
+	@Autowired
+	public ItemService(ItemRepository itemRepository){
+		this.itemRepository = itemRepository;
+	}
 	
-	public List<Item> getItemsInList(){
+	public List<Item> getItems(){
 		List<Item> itemList = new ArrayList();
 		for(Item item: this.itemRepository.findAll()) {
 			itemList.add(item);
 		}
 		return itemList;
 	}
+	public Item addItem(Item item) {
+		return itemRepository.save(item);
+	}
+	public void delItem(Item item) {
+		this.itemRepository.delete(item);
+	}
+	
+	
 
 }
