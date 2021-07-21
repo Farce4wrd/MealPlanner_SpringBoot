@@ -38,7 +38,7 @@ public class Meal implements Serializable {
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="meal", fetch= FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Item> items = new ArrayList<>();
+	private List<Ingredient> ingredients = new ArrayList<>();
 	
 	
 	public Meal() {
@@ -63,7 +63,7 @@ public class Meal implements Serializable {
 	@Override
 	public String toString() {
 		return "Meal [id=" + id + ", name=" + name + ", marketCost=" + marketCost + ", overallCost=" + overallCost
-				+ ", mealCalories=" + mealCalories + ", items=" + items + "]";
+				+ ", mealCalories=" + mealCalories + ", items=" + ingredients + "]";
 	}
 
 	public Long getId() {

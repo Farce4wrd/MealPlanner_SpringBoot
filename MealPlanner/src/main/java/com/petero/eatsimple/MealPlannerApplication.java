@@ -12,9 +12,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-import com.petero.eatsimple.data.ItemRepository;
+import com.petero.eatsimple.data.IngredientRepository;
 import com.petero.eatsimple.data.MealRepository;
-import com.petero.eatsimple.models.Item;
+import com.petero.eatsimple.models.Ingredient;
 import com.petero.eatsimple.models.Meal;
 import com.petero.eatsimple.services.MealService;
 
