@@ -22,9 +22,5 @@ public class MealController {
 	}
 	
 	
-	@GetMapping
-	public String getAllMeal(Model model) {
-		model.addAttribute("Meals", mealService.getAll());
-		return "Meals";
-	}
+	
 }

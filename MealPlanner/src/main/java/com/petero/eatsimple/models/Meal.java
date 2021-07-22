@@ -1,58 +1,56 @@
 package com.petero.eatsimple.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name="MEAL")
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Document(collection = "meals")
 public class Meal implements Serializable {
-	
-	
 
 
 	@Id
-	@Column(name="ID")
 	private Long id;
-	@Column(name="MEAL_NAME")
+
 	private String name;
-	@Column(name="MARKET_COST")
+	
 	private Integer marketCost;
-	@Column(name="OVERALL_COST")
+	
 	private Integer overallCost;
-	@Column(name="MEAL_CALORIES")
+
 	private Integer mealCalories;
 	
-	@OneToMany(mappedBy="meal", fetch= FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Item> items;
+	@JsonIgnore
+	private List<Ingredient> ingredients = new ArrayList<>();
 	
 	
 	public Meal() {
 		
 	}
 	
-	public Meal(Long id, List<Item> items, String name, Integer marketCost, Integer overallCost, Integer menuCalories) {
+	public Meal(Long id, String name, Integer marketCost, Integer overallCost, Integer menuCalories) {
 		this.id = id;
-		this.items = items;
 		this.name = name;
 		this.overallCost = overallCost;
 		this.marketCost = marketCost;
 		this.mealCalories = menuCalories;
+		
 	}
 
-	public List<Item> getItems() {
-		return items;
-	}
+	/*
+	 * public List<Item> getItems() { return items; }
+	 * 
+	 * public void setItems(List<Item> items) { this.items = items; }
+	 */
 
-	public void setItems(List<Item> items) {
-		this.items = items;
+	@Override
+	public String toString() {
+		return "Meal [id=" + id + ", name=" + name + ", marketCost=" + marketCost + ", overallCost=" + overallCost
+				+ ", mealCalories=" + mealCalories + ", items=" + ingredients + "]";
 	}
 
 	public Long getId() {

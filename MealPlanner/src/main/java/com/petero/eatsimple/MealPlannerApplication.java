@@ -10,17 +10,16 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-import com.petero.eatsimple.data.ItemRepository;
+
+import com.petero.eatsimple.data.IngredientRepository;
 import com.petero.eatsimple.data.MealRepository;
-import com.petero.eatsimple.models.Item;
+import com.petero.eatsimple.models.Ingredient;
 import com.petero.eatsimple.models.Meal;
 import com.petero.eatsimple.services.MealService;
 
 
 @SpringBootApplication
-@EnableJpaAuditing
 public class MealPlannerApplication {
 	private static Logger LOG = LoggerFactory.getLogger(MealPlannerApplication.class);
 
@@ -28,7 +27,7 @@ public class MealPlannerApplication {
 		SpringApplication.run(MealPlannerApplication.class, args);
 	}
 	
-	@Bean
+	/*@Bean
 	public CommandLineRunner mappingDemo(MealRepository mealRepository, ItemRepository itemRepository, MealService mealService) {
 		
 		
@@ -45,9 +44,9 @@ public class MealPlannerApplication {
 			Meal myMeal = new Meal(20L, itemList, "Rice and Stew", 200, 250, 2000);
 			LOG.info("This is it");
 			mealRepository.save(myMeal);
-			System.out.println(mealService.getItemNames(myMeal));
+			//LOG.info(mealService.getItemNames(myMeal));
 		};
 	}
-	
+	*/
 	
 }
