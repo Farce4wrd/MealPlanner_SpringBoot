@@ -1,29 +1,43 @@
 package com.petero.eatsimple.controllers;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.petero.eatsimple.models.Ingredient;
-import com.petero.eatsimple.models.Meal;
 import com.petero.eatsimple.services.IngredientService;
 
+import reactor.core.publisher.Mono;
+
 @RestController
-@RequestMapping("/api/items")
+@RequestMapping(IngredientRestController.MEAL_INGREDIENTS)
+@CrossOrigin //Will help run spring and angular locally despite them on different origins. Potential security issue
 public class IngredientRestController {
 	
+	public static final String MEAL_INGREDIENTS = "/meal/ingredients/";
 	@Autowired
 	private IngredientService ingredientService;
 	
+	@GetMapping(path="{ingredientId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	//Temp changing return type to string
+	public Mono<String> getIngredientById(@PathVariable Long ingredientId){
+		
+		//ingredientService.getIngredient(ingredientId);
+		return Mono.just("{}");
+	}
+	@PostMapping(path = "", produces= MediaType.APPLICATION_JSON_UTF8_VALUE, consumes= MediaType.APPLICATION_JSON_UTF8_VALUE)
+	//RequestBody will take the JSON rb into ingredient obj
+	public Mono<String> createIngredient(@RequestBody Mono<Ingredient> ingredient){
+		
+		return Mono.just("{}");
+	}
 	
-//	@GetMapping(value= "/update/{name}")
-//	public List<Item> update(@PathVariable final String name){
-//		Meal meal = new Meal();
-//		meal.setName(name)
-//	}
+
 
 }

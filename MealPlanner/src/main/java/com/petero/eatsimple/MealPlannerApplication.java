@@ -1,22 +1,11 @@
 package com.petero.eatsimple;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-
-
-import com.petero.eatsimple.data.IngredientRepository;
-import com.petero.eatsimple.data.MealRepository;
-import com.petero.eatsimple.models.Ingredient;
-import com.petero.eatsimple.models.Meal;
-import com.petero.eatsimple.services.MealService;
+import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
+import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 
 
 @SpringBootApplication

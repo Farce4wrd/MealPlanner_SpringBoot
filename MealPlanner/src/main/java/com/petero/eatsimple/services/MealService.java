@@ -10,14 +10,14 @@ import com.petero.eatsimple.models.Meal;
 
 @Service
 public class MealService {
-	private final MealRepository mealRepository;
-	
-	@Autowired
-	public MealService(MealRepository mealRepository) {
-		this.mealRepository = mealRepository;
-	}
-	
-	
+//	private final MealRepository mealRepository;
+//	
+//	@Autowired
+//	public MealService(MealRepository mealRepository) {
+//		this.mealRepository = mealRepository;
+//	}
+//	
+//	
 	
 	//Trying to get the List of item objects
 	//Extract the names of those item object and place it inside a list that thymeleaf can select 
