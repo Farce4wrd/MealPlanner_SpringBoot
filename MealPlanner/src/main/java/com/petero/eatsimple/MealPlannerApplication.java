@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfigurat
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 
 
-@SpringBootApplication
+@SpringBootApplication(exclude = MongoDataAutoConfiguration.class)
 public class MealPlannerApplication {
 	private static Logger LOG = LoggerFactory.getLogger(MealPlannerApplication.class);
 

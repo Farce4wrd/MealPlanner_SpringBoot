@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Ingredient implements Serializable {
 
 	@Id
-	private Long id;
+	private String id;
 	
 	private String name;
 	
@@ -26,7 +26,7 @@ public class Ingredient implements Serializable {
 	}
 
 	@Autowired
-	public Ingredient(Long id, String name, Integer cost, Integer calories, Meal meal) {
+	public Ingredient(String id, String name, Integer cost, Integer calories, Meal meal) {
 		this.id = id;
 		this.name = name;
 		this.cost = cost;
@@ -42,7 +42,7 @@ public class Ingredient implements Serializable {
 		this.meal = meal;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 

@@ -23,21 +23,28 @@ import reactor.core.publisher.Mono;
 public class IngredientRestController {
 	
 	public static final String MEAL_INGREDIENTS = "/meal/ingredients/";
+	private final IngredientService ingredientService;
+	
 	@Autowired
-	private IngredientService ingredientService;
+	public IngredientRestController(IngredientService ingredientService) {
+
+		this.ingredientService = ingredientService;
+	}
+
+
 	
 	@GetMapping(path="{ingredientId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	//Temp changing return type to string
-	public Mono<String> getIngredientById(@PathVariable Long ingredientId){
+	
+	public Mono<Ingredient> getIngredientById(@PathVariable String ingredientId){
 		
-		//ingredientService.getIngredient(ingredientId);
-		return Mono.just("{}");
+		return ingredientService.getIngredient(ingredientId);
+
 	}
 	@PostMapping(path = "", produces= MediaType.APPLICATION_JSON_UTF8_VALUE, consumes= MediaType.APPLICATION_JSON_UTF8_VALUE)
 	//RequestBody will take the JSON rb into ingredient obj
-	public Mono<String> createIngredient(@RequestBody Mono<Ingredient> ingredient){
+	public Mono<Ingredient> createIngredient(@RequestBody Mono<Ingredient> ingredient){
 		
-		return Mono.just("{}");
+		return ingredientService.createIngredient(ingredient);
 	}
 	
 	@PutMapping(path = "{ingredientId}",  produces= MediaType.APPLICATION_JSON_UTF8_VALUE, consumes= MediaType.APPLICATION_JSON_UTF8_VALUE)

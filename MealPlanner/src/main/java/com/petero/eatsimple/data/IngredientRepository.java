@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.petero.eatsimple.models.Ingredient;
 
 @Repository
-public interface IngredientRepository extends ReactiveMongoRepository<Ingredient, Long> {
+public interface IngredientRepository extends ReactiveMongoRepository<Ingredient, String> {
 	
 
 }

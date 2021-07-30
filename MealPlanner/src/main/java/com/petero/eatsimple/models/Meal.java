@@ -14,7 +14,7 @@ public class Meal implements Serializable {
 
 
 	@Id
-	private Long id;
+	private String id;
 
 	private String name;
 	
@@ -32,7 +32,7 @@ public class Meal implements Serializable {
 		
 	}
 	
-	public Meal(Long id, String name, Integer marketCost, Integer overallCost, Integer menuCalories) {
+	public Meal(String id, String name, Integer marketCost, Integer overallCost, Integer menuCalories) {
 		this.id = id;
 		this.name = name;
 		this.overallCost = overallCost;
@@ -53,11 +53,11 @@ public class Meal implements Serializable {
 				+ ", mealCalories=" + mealCalories + ", items=" + ingredients + "]";
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

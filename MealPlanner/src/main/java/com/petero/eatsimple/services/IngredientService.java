@@ -10,9 +10,9 @@ public interface IngredientService {
 	
 	Mono<Ingredient> createIngredient(Mono<Ingredient> ingredientMono);
 	
-	Mono<Ingredient> updateIngredient(String id, Mono<Ingredient> ingredientMono);
+	Mono<Ingredient> updateIngredient(String ingredientId, Mono<Ingredient> ingredientMono);
 	
-	Mono<Boolean> deleteIngredient(String id); 
+	Mono<Boolean> deleteIngredient(String ingredientId); 
 	
 
 }
