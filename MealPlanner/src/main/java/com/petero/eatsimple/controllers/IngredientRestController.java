@@ -48,15 +48,15 @@ public class IngredientRestController {
 	}
 	
 	@PutMapping(path = "{ingredientId}",  produces= MediaType.APPLICATION_JSON_UTF8_VALUE, consumes= MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public Mono<String> updateCost(@PathVariable String ingredientId ,@RequestBody Mono<Ingredient> ingredient){
+	public Mono<Ingredient> updateCost(@PathVariable String ingredientId ,@RequestBody Mono<Ingredient> ingredient){
 		
-		return Mono.just("{}");
+		return ingredientService.updateIngredient(ingredientId, ingredient);
 	}
 	
 	@DeleteMapping(path = "{ingredientId}")
 	public Mono<Boolean> deleteIngredient(@PathVariable String ingredientId){
 		
-		return Mono.just(true);
+		return ingredientService.deleteIngredient(ingredientId);
 		
 	}
 
