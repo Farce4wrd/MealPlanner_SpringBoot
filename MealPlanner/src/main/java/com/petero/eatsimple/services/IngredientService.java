@@ -1,21 +1,18 @@
 package com.petero.eatsimple.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.petero.eatsimple.models.Ingredient;
 
-import com.petero.eatsimple.data.IngredientRepository;
+import reactor.core.publisher.Mono;
 
-@Service
-public class IngredientService {
-		
-//	private final IngredientRepository ingredientRepository;
-//	
-//	@Autowired
-//	public IngredientService(IngredientRepository ingredientRepository){
-//		this.ingredientRepository = ingredientRepository;
-//	}
-//	
-
+public interface IngredientService {
+	
+	Mono<Ingredient> getIngredient(String ingredientId);
+	
+	Mono<Ingredient> createIngredient(Mono<Ingredient> ingredientMono);
+	
+	Mono<Ingredient> updateIngredient(String id, Mono<Ingredient> ingredientMono);
+	
+	Mono<Boolean> deleteIngredient(String id); 
 	
 
 }

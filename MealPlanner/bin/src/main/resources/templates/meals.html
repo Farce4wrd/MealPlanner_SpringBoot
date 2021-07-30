@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://wwww.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Eat Simple | Meals</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Meal Name</th>
+            <th>Meal Cost</th>
+            <th>Meal Calories</th>
+        </tr>
+        <tr th:each="meal:${Meals}">
+        	
+        	<td th:text="${meal.name}">Name</td>
+        	<td th:text="${meal.overallCost}">Cost</td>
+        	<td th:text="${meal.mealCalories}">Calories</td>
+        	 
+        </tr>
+    </table>
+</body>
+</html>
