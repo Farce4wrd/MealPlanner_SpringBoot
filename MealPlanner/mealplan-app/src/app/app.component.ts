@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, ControlContainer} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
+import {IngredientService} from './ingredient.service';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +13,21 @@ import {HttpClient} from '@angular/common/http';
 export class AppComponent {
   title = 'mealplan-app';
 
-  constructor(private http:HttpClient){}
-
-  private baseUrl:string = 'http://localhost:8080';
-  private reservationUrl:string = this.baseUrl + 'meal/ingredients/';
+  constructor(private IngredientService: IngredientService){}
 
   ingredients!: Ingredient[]
+  ingredientSearchForm: FormGroup;
+  currentIngredName: string;
+  currentIngredCost: number;
+  currentIngredCalories: number;
 
   ngOnInit(){
+    this.ingredientSearchForm = new FormGroup({
+      ingredName: new FormControl(''),
+      ingredCost: new FormControl(''),
+      ingredCalories: new FormControl('')
+    });
+
     this.ingredients = [ new Ingredient("101", "Rice", 30, 300),
     new Ingredient("102", "Bread", 40, 250),
     new Ingredient("103", "Veggies", 20, 150)];
