@@ -20,12 +20,31 @@ export class AppComponent {
   currentIngredName: string;
   currentIngredCost: number;
   currentIngredCalories: number;
+  currentCaloricLimit: number;
 
   ngOnInit(){
     this.ingredientSearchForm = new FormGroup({
       ingredName: new FormControl(''),
       ingredCost: new FormControl(''),
-      ingredCalories: new FormControl('')
+      ingredCalories: new FormControl(''),
+      caloricLimit: new FormControl('Example: 2500 calories')
+
+    });
+
+    this.ingredientSearchForm.valueChanges.subscribe(form=>{
+      this.currentCaloricLimit = form.caloricLimit;
+      this.currentIngredName = form.ingredName;
+      this.currentIngredCost = form.ingredCost;
+      this.currentIngredCalories = form.ingredCalories;
+
+    })
+
+    this.ingredientSearchForm.valueChanges.subscribe(form =>{
+        this.currentIngredName = form.ingredName;
+        this.currentIngredCost = form.ingredCost;
+        this.currentIngredCalories = form.ingredCalories;
+
+        let ingredValues: string[] = form.ingre
     });
 
     this.ingredients = [ new Ingredient("101", "Rice", 30, 300),
