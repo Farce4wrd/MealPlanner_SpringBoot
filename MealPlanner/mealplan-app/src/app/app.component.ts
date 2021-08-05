@@ -21,6 +21,7 @@ export class AppComponent {
   currentIngredCost: number;
   currentIngredCalories: number;
   currentCaloricLimit: number;
+  currentIngredients: Ingredient[]
 
   ngOnInit(){
     this.ingredientSearchForm = new FormGroup({
@@ -35,32 +36,33 @@ export class AppComponent {
         this.currentIngredCost = form.ingredientCost;
         this.currentIngredCalories = form.ingredientCalories;
 
-        // console.log(this.currentIngredName);
-        // console.log(this.currentIngredCost);
-        // console.log(this.currentIngredCalories);
-
-
-        
-        // console.log(this.currentIngredName);
-        // console.log(this.currentIngredCost);
-        // console.log(this.currentIngredCalories);
-
+      
       
     });
 
     this.ingredients = [ new Ingredient("101", "Rice", 30, 300),
     new Ingredient("102", "Bread", 40, 250),
     new Ingredient("103", "Veggies", 20, 150)];
+    this.getCurrentIngredients();
   }
+
+  getCurrentIngredients(){
+    this.ingredientService.getIngredients().subscribe(getResult =>{
+      console.log(getResult);
+      this.currentIngredients = getResult
+    });
+  }
+  
 
   createIngredient() {
     this.ingredientService.createIngredient( new IngredientRequest(this.currentIngredName, this.currentIngredCost, this.currentIngredCalories)
-    ).subscribe(postResult => console.log(postResult));
+    ).subscribe(postResult => {
+      console.log(postResult)
+      this.getCurrentIngredients;
+
+    } );
   
-    console.log("koko da:" + this.currentIngredName);
-    console.log("koko da:" + this.currentIngredCost);
-    console.log("koko da:" + this.currentIngredCalories);
-  
+    
   }
 
 }

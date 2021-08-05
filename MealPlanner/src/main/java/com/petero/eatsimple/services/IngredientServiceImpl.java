@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.petero.eatsimple.models.Ingredient;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Service
@@ -51,6 +52,12 @@ public class IngredientServiceImpl implements IngredientService {
 		return reactiveMongoOperations.remove(
 				Query.query(Criteria.where("id").is(ingredientId)), Ingredient.class)
 				.flatMap(deleteResult -> Mono.just(deleteResult.wasAcknowledged()));
+	}
+
+	@Override
+	//change this to find all ingredients for a specific meal
+	public Flux<Ingredient> listAllIngredients() {
+		return reactiveMongoOperations.findAll(Ingredient.class);
 	}
 	
 

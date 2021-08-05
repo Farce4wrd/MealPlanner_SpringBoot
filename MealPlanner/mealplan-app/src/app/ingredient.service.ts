@@ -12,6 +12,9 @@ export class IngredientService {
   private baseUrl:string = 'http://localhost:8080';
   private ingredientUrl:string = this.baseUrl + '/meal/ingredients/';
 
+  getIngredients(): Observable<Ingredient[]>{
+    return this.http.get<Ingredient[]>(this.ingredientUrl);
+  }
   createIngredient(body: IngredientRequest): Observable<Ingredient>{
     let httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})

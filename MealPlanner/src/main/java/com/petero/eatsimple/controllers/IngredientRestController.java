@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.petero.eatsimple.models.Ingredient;
 import com.petero.eatsimple.services.IngredientService;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
@@ -32,12 +33,18 @@ public class IngredientRestController {
 	}
 
 
-	
 	@GetMapping(path="{ingredientId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	
 	public Mono<Ingredient> getIngredientById(@PathVariable String ingredientId){
 		
 		return ingredientService.getIngredient(ingredientId);
+
+	}
+	@GetMapping(path="", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	
+	public Flux<Ingredient> getAllIngredients(){
+		
+		return ingredientService.listAllIngredients();
 
 	}
 	@PostMapping(path = "", produces= MediaType.APPLICATION_JSON_UTF8_VALUE, consumes= MediaType.APPLICATION_JSON_UTF8_VALUE)

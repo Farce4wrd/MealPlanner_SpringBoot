@@ -2,6 +2,7 @@ package com.petero.eatsimple.services;
 
 import com.petero.eatsimple.models.Ingredient;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface IngredientService {
@@ -13,6 +14,8 @@ public interface IngredientService {
 	Mono<Ingredient> updateIngredient(String ingredientId, Mono<Ingredient> ingredientMono);
 	
 	Mono<Boolean> deleteIngredient(String ingredientId); 
+	
+	Flux<Ingredient> listAllIngredients();
 	
 
 }

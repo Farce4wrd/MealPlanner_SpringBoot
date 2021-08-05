@@ -37,6 +37,21 @@
                   alt="Intro Gallery Dining Sample Pictures">
           </div>
 
+          <div class ="row" *ngIf="currentIngredients">
+          <h1> Current Ingredients</h1>
+            <div *ngFor= "let currentIngredient of currentIngredients">
+              <ul>
+                <li><strong>Ingredient name: </strong>{{currentIngredient.name}}</li>
+                <li><strong>Ingredient cost: $</strong>{{currentIngredient.cost}}</li>
+                <li><strong>Ingredient calories: </strong>{{currentIngredient.calories}}</li>
+                <hr/>
+                
+              </ul>
+
+            </div>
+
+          </div>
+
           <h1>Available Ingredients</h1>
 
           <div class ="row" *ngIf="ingredients">
