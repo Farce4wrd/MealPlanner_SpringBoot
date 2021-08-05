@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, ControlContainer} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
-import {IngredientService} from './ingredient.service';
+import {IngredientService, IngredientRequest} from './ingredient.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ import {IngredientService} from './ingredient.service';
 export class AppComponent {
   title = 'mealplan-app';
 
-  constructor(private IngredientService: IngredientService){}
+  constructor(private ingredientService: IngredientService){}
 
   ingredients!: Ingredient[]
   ingredientSearchForm: FormGroup;
@@ -24,32 +24,43 @@ export class AppComponent {
 
   ngOnInit(){
     this.ingredientSearchForm = new FormGroup({
-      ingredName: new FormControl(''),
-      ingredCost: new FormControl(''),
-      ingredCalories: new FormControl(''),
-      caloricLimit: new FormControl('Example: 2500 calories')
+      ingredientName: new FormControl(''),
+      ingredientCost: new FormControl(''),
+      ingredientCalories: new FormControl('')
 
     });
 
-    this.ingredientSearchForm.valueChanges.subscribe(form=>{
-      this.currentCaloricLimit = form.caloricLimit;
-      this.currentIngredName = form.ingredName;
-      this.currentIngredCost = form.ingredCost;
-      this.currentIngredCalories = form.ingredCalories;
-
-    })
-
     this.ingredientSearchForm.valueChanges.subscribe(form =>{
-        this.currentIngredName = form.ingredName;
-        this.currentIngredCost = form.ingredCost;
-        this.currentIngredCalories = form.ingredCalories;
+        this.currentIngredName = form.ingredientName;
+        this.currentIngredCost = form.ingredientCost;
+        this.currentIngredCalories = form.ingredientCalories;
 
-        let ingredValues: string[] = form.ingre
+        // console.log(this.currentIngredName);
+        // console.log(this.currentIngredCost);
+        // console.log(this.currentIngredCalories);
+
+
+        
+        // console.log(this.currentIngredName);
+        // console.log(this.currentIngredCost);
+        // console.log(this.currentIngredCalories);
+
+      
     });
 
     this.ingredients = [ new Ingredient("101", "Rice", 30, 300),
     new Ingredient("102", "Bread", 40, 250),
     new Ingredient("103", "Veggies", 20, 150)];
+  }
+
+  createIngredient() {
+    this.ingredientService.createIngredient( new IngredientRequest(this.currentIngredName, this.currentIngredCost, this.currentIngredCalories)
+    ).subscribe(postResult => console.log(postResult));
+  
+    console.log("koko da:" + this.currentIngredName);
+    console.log("koko da:" + this.currentIngredCost);
+    console.log("koko da:" + this.currentIngredCalories);
+  
   }
 
 }

@@ -63,14 +63,40 @@
         </div>
 
         <hr>
-        <h1>Create Meal from Ingredients</h1>
+        <h1>Create New Ingredient</h1>
 
-        <form class ="form-horizontal" [formGroup] ="ingredientSearchForm">
+        <form class ="form-horizontal" [formGroup] ="ingredientSearchForm" (ngSubmit) = "createIngredient()">
 
           <div class ="form-group">
-            <la
-
+            <label for= "ingredientName" class ="col-4"> Ingredient Name: </label>
+            <div class = "col-8">
+              <input id = "ingredientName" type="text" class="form-control"
+              formControlName= "ingredientName">
+            </div>
           </div>
+
+           <div class ="form-group">
+            <label for= "ingredientCost" class ="col-4"> Ingredient Cost: </label>
+            <div class = "col-8">
+              <input id = "ingredientCost" type="text" class="form-control"
+              formControlName= "ingredientCost">
+            </div>
+          </div>
+
+           <div class ="form-group">
+            <label for= "ingredientCalories" class ="col-4"> Ingredient Calories: </label>
+            <div class = "col-8">
+              <input id = "ingredientCalories" type="text" class="form-control"
+              formControlName= "ingredientCalories">
+            </div>
+          </div>
+
+          <div class ="form-group">
+            <div class="col-offset-2 col-10">
+              <button type ="submit" class = "btn btn-primary btn-Large">Create Ingredient</button>
+            </div>
+          </div>
+
 
         </form>
 
