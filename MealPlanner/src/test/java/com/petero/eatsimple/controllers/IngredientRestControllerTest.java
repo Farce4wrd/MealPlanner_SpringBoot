@@ -8,10 +8,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 import com.petero.eatsimple.models.Ingredient;
 import com.petero.eatsimple.models.Meal;
+
+import reactor.core.publisher.Mono;
 
 import static com.petero.eatsimple.controllers.IngredientRestController.MEAL_INGREDIENTS;
 
@@ -37,12 +40,20 @@ class IngredientRestControllerTest {
 
 	@Test
 	void testGetAllIngredients() {
-		webTestClient.get().uri(MEAL_INGREDIENTS);
+		webTestClient.get().uri(MEAL_INGREDIENTS)
+		.exchange()
+		.expectBodyList(Ingredient.class);
 	}
 
 	@Test
 	void testCreateIngredient() {
-		fail("Not yet implemented");
+		webTestClient.post()
+		.uri(MEAL_INGREDIENTS)
+		.body(Mono.just(ingredient), Ingredient.class)
+		.exchange()
+		.expectStatus().isOk()
+		.expectHeader().contentType(MediaType.APPLICATION_JSON_UTF8)
+		.expectBody(Ingredient.class);
 	}
 
 }
